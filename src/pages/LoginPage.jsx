@@ -2,6 +2,7 @@ import {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/all.scss';
+import BackPage from "../pages/BackPage";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
@@ -53,10 +54,13 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='login-page d-flex'>
-        <div >
-            <h1>請先登入<span className='fs-3'>/ <Link to='/' className='text-decoration-none'>回到首頁</Link></span></h1>
-            <form onSubmit={(e) => handleLogin(e)}>
+    <>
+      <div>
+        {isLogin ? <BackPage /> : (
+          <div className='login-page d-flex'>
+            <div >
+              <h1>請先登入<span className='fs-3'>/ <Link to='/' className='text-decoration-none'>回到首頁</Link></span></h1>
+              <form onSubmit={(e) => handleLogin(e)}>
                 <div className="form-floating mb-3">
                     <input name='username' value={myAccount.username} onChange={handleInputChange} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
                     <label htmlFor="floatingInput">Email address</label>
@@ -66,17 +70,11 @@ const LoginPage = () => {
                     <label htmlFor="floatingPassword">Password</label>
                 </div>
                 <button className="btn btn-primary w-100 mb-3">登入</button>
-                {/* 透過三元運算值看看是否登入 */}
-                {hasAttemptedLogin && (
-                  <p className={ isLogin ? "fs-3 text-center bg-white text-success": "fs-3 text-center bg-white text-danger"}>
-                    {isLogin ? '恭喜已登入!!' : errorMessage}
-                  </p>
-                )}
             </form>
-        </div>
-
-        
-    </div>
+          </div>
+        </div>)}
+      </div>
+    </>
   )
 }
 

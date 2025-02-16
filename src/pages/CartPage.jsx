@@ -79,8 +79,8 @@ const CartPage = () => {
     } = useForm()
       
     const onSubmit = handleSubmit((data) => {
-        console.log(data);
-        const {message, ...user} = data;
+        //console.log(data);
+        const {message, ...user} = data; // 解構表單資料
       
         const userInfo = {
           data:{
@@ -88,9 +88,9 @@ const CartPage = () => {
             message
           }
         }
-        checkout(userInfo);
+        checkout(userInfo); // 執行 checkout 動作
     })
-    
+
       
     //結帳
     const checkout = async(data) => {
@@ -270,7 +270,7 @@ const CartPage = () => {
                 ></textarea>
               </div>
               <div className="text-end">
-                <button type="submit" className="btn btn-danger">
+                <button type="submit" className="btn btn-danger"  disabled={ cart.carts?.length === 0 }>
                   送出訂單
                 </button>
               </div>

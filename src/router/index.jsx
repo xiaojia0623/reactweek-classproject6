@@ -6,6 +6,7 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import NotFound from "../pages/NotFound";
 import LoginPage from "../pages/LoginPage";
+import BackPage from "../pages/BackPage";
 
 
 const router = createHashRouter([
@@ -34,6 +35,10 @@ const router = createHashRouter([
     {
         path:'/login',
         element: <LoginPage />
+    },
+    {
+        path:'/admin',
+        element: <BackPage />,
     },
     {
         path:'*',
